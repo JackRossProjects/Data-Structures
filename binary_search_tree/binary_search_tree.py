@@ -106,13 +106,15 @@ class BSTNode:
             return True
 
         # If the function above returns true on the left child value,
-        check_left = self.contains(self.left, self.value)
-        if check_left: 
-            return True # node found, no need to look further 
-
-        # If node is not found in left, recur on right subtree
-        check_right = self.contains(self.right, self.value)  
-        return check_right
+        # check_left = self.contains(self.left, target)
+        if target < self.value:
+            if not self.left:
+                return False
+            else:
+                return self.left.contains(target)
+        else:
+            if self.right:
+                return self.right.contains(target)
 
 
 
