@@ -9,28 +9,167 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # INSTRUCTIONS
+
+'''     Implement the methods:
+        
+            `insert`, `contains`, `get_max`, and `for_each`
+    
+        on the BSTNode class.   '''
+
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
         self.left = None
         self.right = None
 
+
+
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        # Checks if the value/data already exsists in the tree
+        if value == self.value:
+            return
+        
+        if value < self.value:
+            # Check if left element has a value
+            if self.left:
+                # Recursivly call the insert method
+                self.left.insert(value)
+            else:
+                # Adds value/data as a child node on the left
+                self.left = BSTNode(value)
+        else:
+                        # Check if right element has a value
+            if self.right:
+                # Recursivly call the insert method
+                self.right.insert(value)
+            else:
+                # Adds value/data as a child node on the right
+                self.right = BSTNode(value)
+
+
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+
+        # If there's nothing in the tree, it contains nothing, False
+        if (self == None):  
+            return False
+
+        # If the number we're checking is the root node of the tree, it exsists, True
+        if (self.value == target):  
+            return True
+
+        # If the function above returns true on the left child value,
+        check_left = self.contains(self.left, self.value)
+        if check_left: 
+            return True # node found, no need to look further 
+
+        # If node is not found in left, recur on right subtree
+        check_right = self.contains(self.right, self.value)  
+        return check_right
+
+
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        current = self
+        while(current.right):
+            current = current.right
+        return current.value
+
+
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
         pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     # Part 2 -----------------------
 
